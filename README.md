@@ -110,7 +110,3 @@ cf. S3 : simple storage service
   - esc를 누르고 i 누ㄹ면 insert
   - start 밑에 "pm2 start ./bin/www"
   - 수정 후 esc 누르면 다시 복귀 -> :wq 누르면 저장하고 나가기
-
-### s3
-
-- aws -> s3 -> 버킷 만들기 -> 1시에 내 아이디 누르면 내보안자격증명 들어간다 -> 왼쪽에 사용자 클릭 -> 쭉 진행하다보면 키 나옴 (중요하므로 구글링 해보자)
