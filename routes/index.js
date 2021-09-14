@@ -1,11 +1,13 @@
 var express = require("express");
+const con = require("../modules/mysql");
 var router = express.Router();
 
 const listsRouter = require("./lists/index");
 
-/* GET home page. */
-router.get("/", function (req, res, next) {
-  res.render("index", { title: "Express" });
+router.get("/", (req, res) => {
+  res.json({
+    message: "접속 완료",
+  });
 });
 
 router.use("/lists", listsRouter);

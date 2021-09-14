@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
+const con = require("../../modules/mysql");
+
 let todolistArr = [];
 
 // 투두 리스트 생성
@@ -15,24 +17,25 @@ let todolistArr = [];
 // {message : "생성 완료"}
 
 router.post("/", (req, res) => {
-  const { id, todoContent } = req.body;
-  const todoIdx = todolistArr.findIndex((item, index) => {
-    return item.id === Number(id);
-  });
-  if (todoIdx === -1) {
-    todolistArr.push({
-      id,
-      todoContent,
-    });
+  const { todoContent } = req.body;
+  const sql = `insert into ssac_todolist (todoContent, checked) values(?,?)`;
+  const params = [todoContent, 0]; // ? 에 들어갈 값 기입
+
+  con.query(sql, params, (err, result, feilds) => {
+    if (err) throw err;
+    console.log(result);
     res.status(200).json({
       message: "생성 완료",
-      data: todolistArr,
     });
-  } else {
-    res.status(400).json({
-      message: "이미 존재합니다",
-    });
-  }
+    // {
+    //   fieldCount: 0,
+    //   affectedRows: 1,
+    //   insertId: 3,
+    //   info: '',
+    //   serverStatus: 2,
+    //   warningStatus: 0
+    // }
+  });
 });
 
 // 투두 리스트 삭제
@@ -48,20 +51,21 @@ router.post("/", (req, res) => {
 
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
-  const todoIdx = todolistArr.findIndex((item, index) => {
-    return item.id === Number(id);
-  });
-  if (todoIdx === -1) {
-    res.status(400).json({
-      message: "존재하지 않습니다",
-    });
-  } else {
-    todolistArr.splice(todoIdx, 1);
+  const sql = `delete from ssac_todolist where id = ?`;
+  const params = [Number(id)];
+
+  con.query(sql, params, (err, result, feilds) => {
+    if (err) {
+      return res.status(400).json({
+        message: "삭제 실패",
+      });
+    }
+
     res.status(200).json({
-      message: "삭제가 완료되었습니다",
-      data: todolistArr,
+      message: "삭제 완료",
     });
-  }
+    console.log(result);
+  });
 });
 
 // 투두 리스트 전체 조회
@@ -75,10 +79,17 @@ router.delete("/:id", (req, res) => {
 // {message : "조회 완료", data : todolistArr} // [{ id : 0, todoContent : '내일 할일'},{ id : 1, todoContent : '내일 할일'}]
 
 router.get("/", (req, res) => {
-  todolistArr = []; // 리액트 폴더에 있는 값을 새로고침 할 때 초기화 시켜주기 위해 넣음
-  res.status(200).json({
-    message: "전체 초기화 완료.",
-    data: todolistArr,
+  // 전체 데이터를 조회
+  con.query("select * from ssac_todolist", (err, result, fields) => {
+    if (err) {
+      return res.status(400).json({
+        message: "조회 실패",
+      });
+    }
+    res.status(200).json({
+      message: "조회 성공",
+      data: result,
+    });
   });
 });
 
@@ -96,21 +107,36 @@ router.get("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
   const { id } = req.params;
-  const { todoContent } = req.body;
-  const todoIdx = todolistArr.findIndex((item, index) => {
-    return item.id === Number(id);
-  });
-  if (todoIdx === -1) {
-    res.status(400).json({
-      message: "존재하지 않습니다",
-    });
-  } else {
-    todolistArr[todoIdx] = { id: Number(id), todoContent };
+  const { todoContent, checked } = req.body;
+
+  const sql = `update ssac_todolist set todoContent = ?, checked= ? where id = ? `;
+  const params = [todoContent, checked, Number(id)]; // ? 에 들어갈 값 기입
+
+  con.query(sql, params, (err, result, feilds) => {
+    if (err) {
+      return res.status(400).json({
+        message: "수정 실패",
+      });
+    }
+
     res.status(200).json({
-      message: "수정완료",
-      data: todolistArr,
+      message: "수정 성공",
     });
-  }
+  });
+  // const todoIdx = todolistArr.findIndex((item, index) => {
+  //   return item.id === Number(id);
+  // });
+  // if (todoIdx === -1) {
+  //   res.status(400).json({
+  //     message: "존재하지 않습니다",
+  //   });
+  // } else {
+  //   todolistArr[todoIdx] = { id: Number(id), todoContent };
+  //   res.status(200).json({
+  //     message: "수정완료",
+  //     data: todolistArr,
+  //   });
+  // }
 });
 
 module.exports = router;
