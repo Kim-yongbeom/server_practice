@@ -110,3 +110,20 @@ cf. S3 : simple storage service
   - esc를 누르고 i 누ㄹ면 insert
   - start 밑에 "pm2 start ./bin/www"
   - 수정 후 esc 누르면 다시 복귀 -> :wq 누르면 저장하고 나가기
+
+### mysql 설치법
+- brew install mysql
+- brew install mysql-client
+- brew install --cask mysqlWorkbench
+
+### mysqlWorkbench 사용범
+- 스키마에 새로운 스키마 만들기
+- name
+- charactor utf8
+- collation utf8 gernoral
+- Tables에 설정
+- id 에 PK, NN, AI 체크
+
+### vscode
+- npm install  mysql
+- npm install mysql2
