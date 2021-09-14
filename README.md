@@ -111,6 +111,23 @@ cf. S3 : simple storage service
   - start 밑에 "pm2 start ./bin/www"
   - 수정 후 esc 누르면 다시 복귀 -> :wq 누르면 저장하고 나가기
 
+### s3 사용
+- aws -> s3 -> 버킷 만들기 -> 1시에 내 아이디 누르면 내보안자격증명 들어간다 -> 왼쪽에 사용자 클릭 -> 쭉 진행하다보면 키 나옴 (중요하므로 구글링 해보자)
+- 파일용량 부담을 덜어줌
+
+### 이미지 파일 서버에 올리기
+- *vscode*
+- express --view=ejs (폴더이름)
+- npm install   
+- npm install multer multer-s3 aws-sdk
+
+- multer 는 이미지 파일을 업로드, 저장할 때 사용
+  - json 은 키 : 벨류값 
+
+- postman 에서 http://localhost:3000/images
+- body -> form-data -> key(imgs) -> value(내가 올릴 이미지)
+- header -> key(context-type) -> value(multipart/form-data)
+
 ### mysql 설치법
 - brew install mysql
 - brew install mysql-client
