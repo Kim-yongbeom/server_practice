@@ -32,7 +32,7 @@ req.file
 - uri url 차이
   - https://meetup.toast.com/posts/92
 
-### 통신 패키지
+### 통신 패키지 (다른 포트와 연결)
 
 - axios 설치
   - yarn 설치한 폴더에 설치
