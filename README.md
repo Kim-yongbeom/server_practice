@@ -15,7 +15,7 @@
   - express --view=ejs (설치할 폴더이름 기입)
   - sudo npm install -g nodemon
   - npm 설치 후 package.json 에서 scripts 안 start 밑에 "dev" : "nodemon ./bin/www" 작성
-  - nom run dev 하면 서버 켜짐
+  - npm run dev 하면 서버 켜짐
   
 
 ### 데이터를 받아오는 4가지 방식
