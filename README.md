@@ -118,9 +118,10 @@ cf. S3 : simple storage service
 
 ### 이미지 파일 서버에 올리기
 - *vscode*
-- express --view=ejs (폴더이름)
-- npm install   
-- npm install multer multer-s3 aws-sdk
+- 새로운 폴더 만들때
+  - express --view=ejs (폴더이름)
+  - npm install   
+  - npm install multer multer-s3 aws-sdk
 
 - multer 는 이미지 파일을 업로드, 저장할 때 사용
   - json 은 키 : 벨류값 
