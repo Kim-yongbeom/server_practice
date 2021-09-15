@@ -9,10 +9,11 @@
 - npm 설치
 
   - npm install express
+  - express --view=ejs (설치할 폴더이름 기입) // 루트 폴더에서 만들어 줘야함 (자동 폴더 생성이라)
 
   - sudo npm install -g (폴더이름) // global 설치
   - sudo npm install (폴더이름) // 설치된 프로젝트에서만 사용 가능
-  - express --view=ejs (설치할 폴더이름 기입)
+  
   - sudo npm install -g nodemon
   - npm 설치 후 package.json 에서 scripts 안 start 밑에 "dev" : "nodemon ./bin/www" 작성
   - npm run dev 하면 서버 켜짐
