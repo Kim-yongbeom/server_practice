@@ -171,6 +171,7 @@ cf. S3 : simple storage service
 - 원하는 폴더에 git clone https://github.com/ksundong/docker-elk-kor.git
 - cd docker-elk-kor
 - docker-compose build && docker-compose up -d
+- 종료 : docker-compose down -v
 
 ### Elastick search (vscode)
 - npm install elasticsearch
