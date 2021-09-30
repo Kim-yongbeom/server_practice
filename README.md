@@ -1,53 +1,57 @@
-# ssac_server
-
-###
-
+### 
 - todolist_server 폴더와 ssac_react 폴더 보기 두개가 최종본 서로 연동가능
 
 ###
-
 - npm 설치
-
   - npm install express
   - express --view=ejs (설치할 폴더이름 기입) // 루트 폴더에서 만들어 줘야함 (자동 폴더 생성이라)
+  - npm install
 
-  - sudo npm install -g (폴더이름) // global 설치
-  - sudo npm install (폴더이름) // 설치된 프로젝트에서만 사용 가능
+
+  ### 밑에 두개는 잘 모르겟다
+  - sudo npm install -g (폴더이름) 	// global 설치
+  - sudo npm install (폴더이름)	// 설치된 프로젝트에서만 사용 가능
   
   - sudo npm install -g nodemon
   - npm 설치 후 package.json 에서 scripts 안 start 밑에 "dev" : "nodemon ./bin/www" 작성
   - npm run dev 하면 서버 켜짐
   
+### yarn과 통신 (react폴더에 설치)
+- yarn add styled-components axios
+- yarn add react-router-dom
+- yarn add styled-reset
+- yarn add react-icons
 
 ### 데이터를 받아오는 4가지 방식
 
-req.params -> /:id -> const{id} = req.params
-req.query -> /?name=Kim -> const{name} = req.query
-// params(단순 index번호에 사용), query(string에 사용) 는 url에 정보를 담아 보내는 형식으로 보안이 취약함 (get, delete 메소드에 많이 쓰임)
+req.params        ->	/:id              ->       const{id} = req.params
+req.query         ->	/?name=Kim        ->       const{name} = req.query
+// params(단순 index번호에 사용), query(string에 사용) 는 url에 정보를 담아 보내는 형식으로 보안이 취약함 (get, delete  메소드에 많이 쓰임)
 
-req.body -> const{images, url, category, postContent}
+req.body          ->       const{images, url, category, postContent}
 // body 는 보안에 강점이 있다. (post, put 메소드에 많이 쓰임)
 
-req.file
+req.file           
 
-- uri url 차이
+
+- uri  url 차이
   - https://meetup.toast.com/posts/92
 
-### 통신 패키지 (다른 포트와 연결)
 
+### 통신 패키지 (다른 포트와 연동)
 - axios 설치
   - yarn 설치한 폴더에 설치
   - yarn add axios
 - npm install cors
-
   - 서버쪽에서 설치
   - // app.js 에 적어줘야 함
     // cors 도 require 해줘야함
-    const cors = require("cors");
+       const cors = require("cors");
 
-    var app = express();
+       var app = express();
     // app 밑에 써야함
-    app.use(cors());
+       app.use(cors());
+
 
 ### AWS EC2 server setting
 
@@ -66,16 +70,14 @@ cf. S3 : simple storage service
 - 탄력적 ip 사용! -> 탄력적 IP 주소 할당 후에 작업에서 탄력적 IP 주소 연결을 방금 만든 인스턴스에 연결 (꼭 해줘야 돈 안냄) -> 확정 및 릴리즈...(사용 후에 릴리즈도 꼭 해주자 인스턴스도 종료시켜야함)
 
 - FileZila에서 sftp를 이용하여 ubuntu로 로그인하고 개발파일 upload
-
   - (적용 방법) 11시에 아이콘 -> 프로토콜 SFTP설정 -> 호스트에는 aws에서 할당받은 탄력적 IP주소 입력 -> 로그온 유형은 키파일 -> 사용자는 ubuntu -> 키 파일은 pem key 다운받은 폴더 설정 -> 연결
 
 - 자신이 서버개발한 폴더 ubuntu에 넣기 (폴더 위치 : /home/ubuntu)
 
-- AWS instance 설치 후 puTTY를 이용해서 server 접근 // 윈도우 방식
+- AWS instance 설치 후 puTTY를 이용해서 server 접근	// 윈도우 방식
   - https://mozi.tistory.com/191 참고
 - ubuntu 접속 하려면 터미널로 키파일이 위치한 폴더 접속 후 인스턴트 페이지에서 연결 누른후 SSH 클라이언트에서 가장 밑에 있는 ssh ~~~부분 복사
 - ubuntu 접속 후 node js와 npm 설치
-
   - sudo apt-get update
   - sudo apt-get install nodejs
   - sudo apt-get install npm
@@ -84,7 +86,7 @@ cf. S3 : simple storage service
 - AWS내 public DNS 주소로 접속
   - 개발 시 3000 포트를 이용하였으므로 :3000 붙여야 함
   - dns 주소로만 접근하기 위해서는 80포트 접근시 3000으로 redirect 필요
-  - ubuntu에서 sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
+  - ubuntu에서 sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000 
   - 입력시 주소창에서 3000번 포트 작성 안해도됨
 
 ### pm2 install 및 사용 -> 무중단 서비스 (서버를 계속 가동)
@@ -118,7 +120,7 @@ cf. S3 : simple storage service
 
 ### 이미지 파일 서버에 올리기
 - *vscode*
-- 새로운 폴더 만들때
+- 새로운 폴더에 만들때
   - express --view=ejs (폴더이름)
   - npm install   
   - npm install multer multer-s3 aws-sdk
@@ -146,3 +148,29 @@ cf. S3 : simple storage service
 ### vscode
 - npm install  mysql
 - npm install mysql2
+
+### mongodb 설치
+- express --no-view 폴더이름
+- npm install
+- npm install mongoose
+
+### nginx 사용 (pm2로 서버킨 후에 사용)
+- sudo apt-get install nginx
+- sudo vi /etc/nginx/sites-available/default 로 들어가서 server_name 밑 loaction에 404서버 #으로 주석처리 후 
+- proxy_pass http://localhost:3000;
+- proxy_set_header X-Real-IP $remote_addr;
+- proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+- proxy_set_header Host $http_host;
+- 입력
+
+### aws 로 도메인 서버 이름 설정하기
+- Route 5s -> 호스트 영역 -> 주소만든것 입력하기
+- 레코드 생성 -> 주소칸에 탄력적 IP
+
+### Docker에서 Elastick search 설치 (터미널에서 진행)
+- 원하는 폴더에 git clone https://github.com/ksundong/docker-elk-kor.git
+- cd docker-elk-kor
+- docker-compose build && docker-compose up -d
+
+### Elastick search (vscode)
+- npm install elasticsearch
