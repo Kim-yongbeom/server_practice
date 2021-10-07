@@ -167,6 +167,14 @@ cf. S3 : simple storage service
 - Route 5s -> 호스트 영역 -> 주소만든것 입력하기
 - 레코드 생성 -> 주소칸에 탄력적 IP
 
+### Docker 명령어
+- docker --version (버전확인)
+- docker ps -a (파일 전부 확인)
+- docker images (이미지 파일 확인)
+- docker rm [id값] (파일 삭제)
+- docker run ubuntu:latest (우분투 이미지)
+- docker run --rm -it ubuntu:latest /bin/bash (우분투 실행) -> exit 하면 나가지고 삭제됨
+
 ### Docker에서 Elastick search 설치 (터미널에서 진행)
 - 원하는 폴더에 git clone https://github.com/ksundong/docker-elk-kor.git
 - cd docker-elk-kor
@@ -175,3 +183,15 @@ cf. S3 : simple storage service
 
 ### Elastick search (vscode)
 - npm install elasticsearch
+
+### Elastick tokenizer
+- https://www.elastic.co/guide/en/elasticsearch/reference/7.x/analysis-tokenizers.html
+
+### react 시간 이쁘게
+- yarn add dayjs 설치
+- import dayjs from "dayjs" 적용할 컴포넌트에 적용
+- const formatDate = dayjs(writeTime).format("YYYY-MM-DD / hh:MM"); 적용할 컴포넌트 함수안에 기입
+- https://day.js.org/docs/en/manipulate/subtract (자료)
+
+### react 주소 옮길때 딜레이 안걸리게
+- yarn add react-loading
