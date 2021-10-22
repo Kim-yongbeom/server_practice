@@ -1,5 +1,5 @@
-### 
-- todolist_server 폴더와 ssac_react 폴더 보기 두개가 최종본 서로 연동가능
+### react
+- npx create-react-app [폴더명]
 
 ###
 - npm 설치
@@ -115,7 +115,7 @@ cf. S3 : simple storage service
   - 수정 후 esc 누르면 다시 복귀 -> :wq 누르면 저장하고 나가기
 
 ### s3 사용
-- aws -> s3 -> 버킷 만들기 -> 1시에 내 아이디 누르면 내보안자격증명 들어간다 -> 왼쪽에 사용자 클릭 -> 쭉 진행하다보면 키 나옴 (중요하므로 구글링 해보자)
+- aws -> s3 -> 버킷 만들기(모든 퍼블릭 액세스 차단 풀어줘야하나?(일단풀어줌) -> 기본 암호화 활성화 체크) -> 1시에 내 아이디 누르면 내보안자격증명 들어간다 -> 왼쪽에 사용자 클릭 -> 쭉 진행하다보면 키 나옴 (중요하므로 구글링 해보자)
 - 파일용량 부담을 덜어줌
 
 ### 이미지 파일 서버에 올리기
@@ -152,7 +152,7 @@ cf. S3 : simple storage service
 ### mongodb 설치
 - express --no-view 폴더이름
 - npm install
-- npm install mongoose
+- npm install mongoose cors
 
 ### nginx 사용 (pm2로 서버킨 후에 사용)
 - sudo apt-get install nginx
@@ -186,6 +186,9 @@ cf. S3 : simple storage service
 
 ### Elastick tokenizer
 - https://www.elastic.co/guide/en/elasticsearch/reference/7.x/analysis-tokenizers.html
+
+### JWT 설치
+- npm install jsonwebtoken --save
 
 ### react 시간 이쁘게
 - yarn add dayjs 설치
